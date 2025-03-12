@@ -49,5 +49,9 @@ def about_bot(message):
 def back_to_main(message):
     bot.send_message(message.chat.id, "Возвращаюсь в главное меню:", reply_markup=main_menu())
 
+# Обработчик для всех остальных сообщений, чтобы не вызывать ошибку
+@bot.message_handler(func=lambda message: True)
+def handle_unexpected_message(message):
+    bot.send_message(message.chat.id, "Я не понял твоё сообщение. Пожалуйста, используй кнопки для навигации!")
 
 bot.polling()
